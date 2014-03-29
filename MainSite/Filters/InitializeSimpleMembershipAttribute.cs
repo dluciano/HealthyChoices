@@ -28,14 +28,14 @@ namespace MainSite.Filters
             {
                 try
                 {
-                    using (var context = new HealthyChoicesContext())
-                    {
-                        if (!context.Database.Exists())
-                        {
-                            // Create the SimpleMembership database without Entity Framework migration schema
-                            ((IObjectContextAdapter)this).ObjectContext.CreateDatabase();
-                        }
-                    }
+                    //using (var context = new HealthyChoicesContext())
+                    //{
+                    //    if (!context.Database.Exists())
+                    //    {
+                    //        // Create the SimpleMembership database without Entity Framework migration schema
+                    //        ((IObjectContextAdapter)this).ObjectContext.CreateDatabase();
+                    //    }
+                    //}
                     WebSecurity.InitializeDatabaseConnection("HealthyChoicesConnection", "User", "Id", "UserName", autoCreateTables: true);
                 }
                 catch (Exception ex)

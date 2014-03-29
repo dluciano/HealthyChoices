@@ -14,8 +14,6 @@ namespace DataAccess
         public HealthyChoicesContext()
             : base("HealthyChoicesConnection")
         {
-            //Database.SetInitializer<HealthyChoicesContext>(null);
-            //Database.SetInitializer(new DropCreateDatabaseAlways<HealthyChoicesContext>());
         }
 
         public DbSet<User> UserProfiles { get; set; }
@@ -25,13 +23,14 @@ namespace DataAccess
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
             Database.SetInitializer(new MigrateDatabaseToLatestVersion<HealthyChoicesContext, Configuration>());
+            modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
+
             modelBuilder.Configurations.Add(new UserMapping());
             modelBuilder.Configurations.Add(new TakenAtMapping());
             modelBuilder.Configurations.Add(new FoodTypeMapping());
             modelBuilder.Configurations.Add(new FoodRegisterMapping());
-
-            modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
         }
     }
 }
