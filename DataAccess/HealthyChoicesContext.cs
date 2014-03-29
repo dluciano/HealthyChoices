@@ -16,6 +16,7 @@ namespace DataAccess
         {
             //Database.SetInitializer<HealthyChoicesContext>(null);
             //Database.SetInitializer(new DropCreateDatabaseAlways<HealthyChoicesContext>());
+            Database.SetInitializer(new MigrateDatabaseToLatestVersion<HealthyChoicesContext, Configuration>());
         }
 
         public DbSet<User> UserProfiles { get; set; }
@@ -25,7 +26,6 @@ namespace DataAccess
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            Database.SetInitializer(new MigrateDatabaseToLatestVersion<HealthyChoicesContext, Configuration>());
             modelBuilder.Configurations.Add(new UserMapping());
             modelBuilder.Configurations.Add(new TakenAtMapping());
             modelBuilder.Configurations.Add(new FoodTypeMapping());

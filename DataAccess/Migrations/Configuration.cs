@@ -4,20 +4,20 @@ namespace DataAccess.Migrations
 {
     using System.Data.Entity.Migrations;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<DataAccess.HealthyChoicesContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<HealthyChoicesContext>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = true;
         }
 
-        protected override void Seed(DataAccess.HealthyChoicesContext context)
+        protected override void Seed(HealthyChoicesContext context)
         {
             context.FoodTypes.AddOrUpdate(c => c.Name,
                 new[]
                 {
                     new FoodType{Active = true, Description = "Fast Food", Name = "FastFood"},
-                    new FoodType{Active = true, Description = "Vegetarian", Name = "Vegetarian"},
+                    new FoodType{Active = true, Description = "Vegetarian", Name = "Vegetarian"}
                 });
 
             context.TakenAts.AddOrUpdate(c => c.Name,
