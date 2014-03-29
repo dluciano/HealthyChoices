@@ -1,0 +1,42 @@
+﻿@using MainSite.Models
+@model MainSite.Models.FoodRegisterViewModel
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="h4 modal-title" id="TakenAtTitle"></span>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            </div>
+            @*TODO: Set the UpdateTargetId*@
+            @using (Ajax.BeginForm("Create", "FoodRegister", new AjaxOptions { HttpMethod = "Post", InsertionMode = InsertionMode.InsertAfter, OnSuccess = "close()" }, new { role = "form" }))
+            {
+                @Html.AntiForgeryToken()
+                <div class="modal-body">
+
+
+                    @Html.ValidationSummary(true)
+
+                    @Html.HiddenFor(m => m.Id)
+                    @Html.HiddenFor(m => m.TakenAtId)
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Description)
+                        @Html.TextAreaFor(m => m.Description, new { @class = "form-control", rows = "3" })
+                        @Html.ValidationMessageFor(m => m.Description)
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.FoodTypeId)
+                        @Html.DropDownListFor(m => m.FoodTypeId, new SelectList(ViewBag.FoodTypes, "Id", "Description"), new { @class = "form-control" })
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <input type="submit" class="btn btn-primary" value="Save changes" />
+                </div>
+            }
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->

@@ -1,0 +1,56 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Entity", "Entity\Entity.csproj", "{ADBCDD02-2392-4FAF-BEE0-BA5AA474A77B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MainSite", "MainSite\MainSite.csproj", "{3EFF8269-09E7-4754-91FE-AE5CD9B27CA3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccess", "DataAccess\DataAccess.csproj", "{EFD957FC-5B21-4B60-9EA5-C2C79FD01A5C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Service", "Service\Service.csproj", "{B07E2273-1FC6-4CCB-ACC3-F3C868A8BACA}"
+EndProject
+Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 5
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://dawnsoft.visualstudio.com/defaultcollection
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = DataAccess\\DataAccess.csproj
+		SccProjectName1 = DataAccess
+		SccLocalPath1 = DataAccess
+		SccProjectUniqueName2 = Entity\\Entity.csproj
+		SccProjectName2 = Entity
+		SccLocalPath2 = Entity
+		SccProjectUniqueName3 = MainSite\\MainSite.csproj
+		SccProjectName3 = MainSite
+		SccLocalPath3 = MainSite
+		SccProjectUniqueName4 = Service\\Service.csproj
+		SccProjectName4 = Service
+		SccLocalPath4 = Service
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{ADBCDD02-2392-4FAF-BEE0-BA5AA474A77B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ADBCDD02-2392-4FAF-BEE0-BA5AA474A77B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ADBCDD02-2392-4FAF-BEE0-BA5AA474A77B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ADBCDD02-2392-4FAF-BEE0-BA5AA474A77B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3EFF8269-09E7-4754-91FE-AE5CD9B27CA3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3EFF8269-09E7-4754-91FE-AE5CD9B27CA3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3EFF8269-09E7-4754-91FE-AE5CD9B27CA3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3EFF8269-09E7-4754-91FE-AE5CD9B27CA3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EFD957FC-5B21-4B60-9EA5-C2C79FD01A5C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EFD957FC-5B21-4B60-9EA5-C2C79FD01A5C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EFD957FC-5B21-4B60-9EA5-C2C79FD01A5C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EFD957FC-5B21-4B60-9EA5-C2C79FD01A5C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B07E2273-1FC6-4CCB-ACC3-F3C868A8BACA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B07E2273-1FC6-4CCB-ACC3-F3C868A8BACA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B07E2273-1FC6-4CCB-ACC3-F3C868A8BACA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B07E2273-1FC6-4CCB-ACC3-F3C868A8BACA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

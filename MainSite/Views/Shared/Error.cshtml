@@ -1,0 +1,83 @@
+﻿@using DataAccess
+@model System.Web.Mvc.HandleErrorInfo
+
+@{
+    ViewBag.Title = "Error";
+    try
+    {
+        using (var context = new HealthyChoicesContext())
+        {
+            if (!context.Database.Exists())
+            {
+                // Create the SimpleMembership database without Entity Framework migration schema
+                <text>La base de datos <b>NO</b> se creó<br /></text>
+            }
+            else
+            {
+                <text>La base de datos <b>SÍ</b> se creó<br /></text>
+            }
+        }
+    }
+    catch (Exception e)
+    {
+        <text>Explotó: @e.Message<br /></text>
+        throw;
+    }
+
+}
+<p class="text-danger well">
+    @if (HttpContext.Current.IsDebuggingEnabled)
+    {
+        <ul class="">
+            <li>
+                <h5 class="text-danger">Error found in:   @Model.ControllerName\@Model.ActionName</h5>
+                <dl>
+                    <dt>Message</dt>
+                    <dd>@Model.Exception.Message</dd>
+                    <dt>StackTrace</dt>
+                    <dd>@Model.Exception.StackTrace</dd>
+                    <dt>Inner Execptions</dt>
+                    <dd>
+                        @if (@Model.Exception.InnerException != null)
+                        {
+                            @Model.Exception.InnerException.Message
+                        }
+                        else
+                        {
+                            <text>No more information added to the exception</text>
+                        }
+                    </dd>
+                </dl>
+            </li>
+        </ul>
+    }
+    else
+    {
+        <text>Unxepected error ocurred. Please Try Again.</text>
+
+        <ul class="">
+            <li>
+                <h5 class="text-danger">Error found in:   @Model.ControllerName\@Model.ActionName</h5>
+                <dl>
+                    <dt>Message</dt>
+                    <dd>@Model.Exception.Message</dd>
+                    <dt>StackTrace</dt>
+                    <dd>@Model.Exception.StackTrace</dd>
+                    <dt>Inner Execptions</dt>
+                    <dd>
+                        @if (@Model.Exception.InnerException != null)
+                        {
+                            @Model.Exception.InnerException.Message
+                        }
+                        else
+                        {
+                            <text>No more information added to the exception</text>
+                        }
+                    </dd>
+                </dl>
+            </li>
+        </ul>
+    }
+
+
+</p>

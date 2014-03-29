@@ -1,0 +1,36 @@
+-----------Main Site------------
+
+Security
+--Sign in
+--Sign up
+--Sign in thought service
+--*Account (View an Edit user info)
+
+*FoodRegister
+--Index
+--Add/Edit
+
+-----------Admin Site------------
+
+Security
+--Sign in
+
+*User
+--Index
+--Add/Edit
+
+*Role
+--Index
+--Add/Edit
+
+*FoodType 
+--Index
+--Add/Edit
+
+*TakenAt
+--Index
+--Add/Edit
+
+*FoodRegister
+--Index
+--Add/Edit

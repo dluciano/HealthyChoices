@@ -1,0 +1,2 @@
+Enable-Migrations -ContextProjectName DataAccess -StartUpProjectName MainSite -ContextTypeName DataAccess.HealthyChoisesContext -ProjectName DataAccess  -EnableAutomaticMigrations -Force
+Add-Migration Initial

@@ -1,0 +1,42 @@
+﻿@model MainSite.Models.LoginModel
+
+@{
+    ViewBag.Title = "Log in";
+    Layout = "~/Views/_LoginLayout.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-3 panel panel-default center-content" style="display: none">
+        <h1>Healthy Choices</h1>
+        @using (Html.BeginForm(new { ReturnUrl = ViewBag.ReturnUrl }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true, null, new { @class = "text-primary" })
+            <div class="input-group">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                @Html.TextBoxFor(m => m.UserName, new { @class = "form-control", placeholder = "Username" })
+            </div>
+            @Html.ValidationMessageFor(m => m.UserName, null, new { @class = "text-danger" })
+            <br />
+            <div class="input-group">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = "Password" })
+            </div>
+            @Html.ValidationMessageFor(m => m.Password, null, new { @class = "text-danger" })
+            <div class="checkbox">
+                <label for="RememberMe">
+                    <input data-val="true" data-val-required="The Remember me? field is required." id="RememberMe" name="RememberMe" type="checkbox" value="true"><input name="RememberMe" type="hidden" value="false" />
+                    Remember me?
+                </label>
+            </div>
+
+            <button type="submit" class="btn btn-success">Sign in</button>
+
+            <div class="">
+                @Html.ActionLink("Register", "Register") if you don't have an account.
+            </div>
+
+        }
+        @Html.Action("ExternalLoginsList", new { ReturnUrl = ViewBag.ReturnUrl })
+    </div>
+</div>

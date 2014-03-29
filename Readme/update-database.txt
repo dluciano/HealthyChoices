@@ -1,0 +1,11 @@
+Server=tcp:s8odyhzhou.database.windows.net,1433;Database=HealthyChoises;User ID=HealthyChoises@s8odyhzhou;Password=H3@lthy_Ch0153s;Trusted_Connection=False;Encrypt=True;Connection Timeout=30;
+
+Update-Database -Verbose -Force -ProjectName DataAccess -StartUpProjectName MainSite -ConnectionString "Server=tcp:s8odyhzhou.database.windows.net,1433;Database=HealthyChoises;User ID=HealthyChoises@s8odyhzhou;Password=H3@lthy_Ch0153s;Trusted_Connection=False;Encrypt=True;Connection Timeout=30;"
+
+DROP TABLE [webpages_UsersInRoles]
+DROP TABLE [webpages_Roles]
+DROP TABLE [webpages_OAuthMembership]
+DROP TABLE [webpages_Membership]
+DROP TABLE [User]
+
+SELECT * FROM [User]

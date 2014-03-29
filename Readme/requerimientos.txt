@@ -1,0 +1,20 @@
+Requerimientos.
+
+Básicos.
+
+--Loggin.
+--Registro. (Preguntar cuales datos serían importantes)
+
+--Llevar track de que come la persona cada día (Pantalla de entrada diaria)
+	--Agregar comida. Ya sea desayuno, comida o cena.otros datos serían, el tipo de comida['grasoso', 'vegetariana', 'carnes', 'carbohidratos']
+	--Agregar si realizó ejercicios ese día.
+	--Si abro la pantalla de nuevo en el día de hoy, debo poder modificar la entrada (pero no la de días pasados)
+
+--Guardar la data en bd
+
+Otros.
+	Loguearse con Google, Facebook, o Twitter.
+	Site responsive.
+	Deploy en windows Azure.
+
+--Otros que yo determino son: Un admin para configurar la aplicación.

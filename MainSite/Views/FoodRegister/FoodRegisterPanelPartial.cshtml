@@ -1,0 +1,27 @@
+﻿<div class="row">
+    <div data-bind="foreach: FoodRegisters">
+        <div class="col-lg-4">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <span class="h3 panel-title" data-bind="text: TakenAt"></span>
+                    <span class="glyphicon glyphicon-remove pull-right"
+                        data-bind="popover: { template: 'popoverTemplate', title: 'Confirm Remove', placement: 'bottom' }, visible: canEdit"></span>
+
+                    <script type="text/html" id="popoverTemplate">
+                        Are you shure you want to remove this entry?
+                        <button class="btn  btn-danger" data-dismiss="popover" data-bind="click: $root.remove">Yes</button>
+                        <button class="btn  btn-default" data-dismiss="popover">No</button>
+                    </script>
+                </div>
+                <div class="panel-body">
+                    <b>Description: </b><i data-bind="text: Description"></i>
+                    <br />
+                    <b>Date: </b><i data-bind="text: CreationDate"></i>
+                    <br />
+                    <b>Food Characterisc: </b><i data-bind="text: FoodType"></i>
+                    <span class="glyphicon glyphicon-edit pull-right" data-bind="click: $root.edit, visible: canEdit "></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

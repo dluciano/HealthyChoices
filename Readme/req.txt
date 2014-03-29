@@ -1,0 +1,17 @@
+Necesito que desarrolles un App para entrar hábitos de decisiones saludables cada día. Estos son los lineamientos básicos:
+
+- El objetivo es llevar track de lo que la persona come cada día
+- El usuario debe poderse loguear en el App. antes de comenzar a llevar tracking de sus hábitos
+- La pantalla me debe permitir especificar que comi de desayuno, comida y cena
+- El diseño de la entrada queda a tu juicio, pero fuese bueno poder llevar tracking del tipo de comida (ej: si era algo grasoso/fast-food, si fueron vegetales, carne, carbohidratos)
+- También me debe permitir especificar si hice ejercicios ese día
+- Toda la información se debe persistir en un data store (usa lo que quieras: SQL Server, Mongo, Table Storage, etc)
+- Solamente tienes que desarrollar la pantalla de entrada diaria de la aplicación. No hay que hacer ninguna pantalla que muestre estadísticas ni nada. 
+- Si abro la pantalla de nuevo en el día de hoy, debo poder modificar la entrada (pero no la de días pasados)
+
+El objetivo del challenge es ver que tan creativo te pones al desarrollar la interfaz, y cuales son tus hábitos a la hora de organizar código, tanto en el Backend como en el FrontEnd. 
+
+Puntos extra si: 
+* Me puedo loguear con Google, Facebook, o Twitter
+* Si el diseño del site es responsive (se ve bien en los celulares)
+* Puedes hacer un deploy en Windows Azure de la aplicación para probarla en vivo

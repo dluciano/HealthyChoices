@@ -1,0 +1,198 @@
+﻿@using Entity.Capture
+@using MainSite.Models
+
+@{
+    ViewBag.Title = "Your Food Record";
+    ViewBag.ServerDate = DateTime.Now;
+}
+
+<div class="content-wrapper col-lg-12 center-block">
+    <nav class="navbar navbar-default" role="navigation" style="margin: 10px">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+        <div class="collapse navbar-collapse">
+            <form class="navbar-form form-inline navbar-left" role="form">
+                <button type="button" class="btn btn-default" id="btnAddBreakfast">
+                    Add Breakfast
+                </button>
+                <button type="button" class="btn btn-default" id="btnAddLunch">
+                    Add Lunch
+                </button>
+                <button type="button" class="btn btn-default" id="btnAddDinner">
+                    Add Dinner
+                </button>
+                <button type="button" class="btn btn-info" data-bind="click: $root.refreshAll">
+                    <i class="glyphicon glyphicon-refresh"></i>
+                </button>
+            </form>
+            <span class="navbar-text navbar-right">
+                @if (Request.IsAuthenticated)
+                {
+                    <text>
+                    @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-form navbar-right" }))
+                    {
+                        <text>
+                        Hello, @Html.ActionLink(User.Identity.Name, "Manage", "Account", routeValues: null, htmlAttributes: new { @class = "navbar-link ", title = "Manage" })
+                        </text>
+                        @Html.AntiForgeryToken()
+<a href="javascript:document.getElementById('logoutForm').submit()" class="navbar-link"><span class="glyphicon glyphicon-log-out" title="logout"></span></a>
+                    }
+                    </text>
+                }
+            </span>
+        </div>
+    </nav>
+
+    <div class="row">
+        <div class="col-lg-3">
+            <span class="h4">Showing elements for: </span>
+            <span class="form-group" style="position: fixed; margin-left: 20px; width: 15%;">
+                <div class="input-group date" id="dp3">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                    <input class="form-control" type="text" readonly="readonly" id="dateControl" value="" />
+                </div>
+            </span>
+        </div>
+    </div>
+    <br />
+    <br />
+    @{
+        Html.RenderPartial("FoodRegisterPanelPartial");
+        Html.RenderPartial("CreatePartial", new FoodRegisterViewModel());
+    }
+</div>
+
+@section scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/knockout")
+    @Scripts.Render("~/bundles/notify")
+    <script type="text/javascript">
+        $(function () {
+            $("[data-toggle=popover]").popover();
+            initPanels();
+            var model = new Model();
+            $(".input-group.date")
+                .datepicker({
+                    autoclose: true,
+                    todayHighlight: true,
+                    endDate: new Date(@ViewBag.ServerDate.Year,@(ViewBag.ServerDate.Month - 1),@ViewBag.ServerDate.Day),
+                    startView: 0,
+                    todayButton: true,
+                    format: 'mm/dd/yyyy'
+                })
+                .on("changeDate", function (e) {
+                    model.refresh(e.date);
+                });
+            ;
+            model.refresh($("#dp3").datepicker('getDate'));
+            $("#dateControl").val(dateFormat($("#dp3").datepicker('getDate'), "mm/dd/yyyy"));
+            ko.applyBindings(model);
+            closeModal(model);
+        });
+
+            function initPanels() {
+                $("#btnAddBreakfast").click(function (e) {
+                    $("#myModal").modal();
+                    $("#TakenAtId").val(@( ((List<TakenAt>)(@ViewBag.TakenAts)).FirstOrDefault(m => m.Name == "Breakfast").Id));
+                    $("#TakenAtTitle").text('Add @( ((List<TakenAt>)(@ViewBag.TakenAts)).FirstOrDefault(m => m.Name == "Breakfast").Description)');
+                });
+
+                $("#btnAddLunch").click(function (e) {
+                    $("#myModal").modal();
+                    $("#TakenAtId").val(@( ((List<TakenAt>)(@ViewBag.TakenAts)).FirstOrDefault(m => m.Name == "Launch").Id));
+                    $("#TakenAtTitle").text('Add @( ((List<TakenAt>)(@ViewBag.TakenAts)).FirstOrDefault(m => m.Name == "Launch").Description)');
+                });
+
+                $("#btnAddDinner").click(function (e) {
+                    $("#myModal").modal();
+                    $("#TakenAtId").val(@( ((List<TakenAt>)(@ViewBag.TakenAts)).FirstOrDefault(m => m.Name == "Dinner").Id));
+                    $("#TakenAtTitle").text('Add @( ((List<TakenAt>)(@ViewBag.TakenAts)).FirstOrDefault(m => m.Name == "Dinner").Description)');
+                });
+            }
+
+            function closeModal(modal) {
+                $("#myModal").on('hidden.bs.modal', function (e) {
+                    $("#TakenAtId").val(-1);
+                    $("#TakenAtTitle").text("");
+                    $("#Description").val("");
+                    $("#FoodTypeId").val(1);
+                    modal.refresh($("#dp3").datepicker('getDate'));
+                    $('#form0').attr('action', '@Url.Action("Create")');                    
+                });
+            }
+
+            function close() {
+                $("#myModal").modal('hide');
+                showMessage("Data saved successfully!", "success");
+            }
+
+            function showMessage(message, style) {
+                $.notify(message, style);
+            }
+
+            function Model() {
+                var self = this;
+
+                self.FoodRegisters = ko.observableArray(null);
+
+                self.refreshAll = function () {
+                    self.refresh($("#dp3").datepicker('getDate'));
+                };
+
+                self.remove = function (evt) {
+                    $.getJSON('@Url.Action("Remove")', { id: evt.Id }, function (data) {
+                        showMessage(data, "info");
+                        self.refresh($("#dp3").datepicker('getDate'));
+                    }).fail(function () {
+                        showMessage("Error removing the data.", "error");
+                    });
+                };
+
+                self.edit = function (evt) {
+                    $('#form0').attr('action', '@Url.Action("Edit")');
+                    $("#Id").val(evt.Id());
+                    $("#TakenAtId").val(evt.TakenAtId());
+                    $("#Description").val(evt.Description());
+                    $('#FoodTypeId option[value="' + evt.FoodTypeId() + '"]').prop('selected', 'selected');
+                    $("#myModal").modal('show');
+                    $("#TakenAtTitle").text("Edit " + evt.TakenAt());
+                };
+                self.refresh = function (date) {
+                    var date = dateFormat(date, "mm/dd/yyyy HH:MM:ss");
+                    $.getJSON('@Url.Action("GetFoodRegistersByLoggedUserAndDate")', { date: date }, function (data) {
+                        if (data === null) {
+                            showMessage("The server can't search records for this date.", "error");
+                            return;
+                        }
+                        if (data.Message !== undefined && data.Message !== "") {
+                            showMessage(data.Message, "error");
+                        }
+                        if (data.length <= 0) {
+                            showMessage("No data found for this date", "info");
+                        }
+                        ko.mapping.fromJS(data, {
+                            create: function (options) {
+                                now = new Date(@ViewBag.ServerDate.Year,@(ViewBag.ServerDate.Month - 1),@ViewBag.ServerDate.Day);
+                                creationDate = new Date(options.data.CreationDate);
+                                var innerModel = ko.mapping.fromJS(options.data);
+                                innerModel.canEdit = now.getFullYear() == creationDate.getFullYear()
+                                    && now.getMonth() == creationDate.getMonth()
+                                    && now.getDate() == creationDate.getDate();
+                                return innerModel;
+                            }
+                        }, self.FoodRegisters);
+                    }).fail(function () {
+                        showMessage("Error refreshing the data.", "error");
+                    });
+                };
+                }
+    </script>
+
+}
